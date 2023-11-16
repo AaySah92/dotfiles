@@ -10,21 +10,55 @@
     // "modules-center": ["sway/window"],
     "modules-right": [
 	// "mpd", 
-	"idle_inhibitor", 
-	"pulseaudio",
+	// "idle_inhibitor", 
+	// "pulseaudio",
 	"network",
 	"cpu", 
 	"memory", 
 	"temperature", 
-	"backlight", 
+	// "backlight", 
 	// "backlight/slider",
 	// "keyboard-state", 
 	// "sway/language", 
 	"battery", 
 	// "battery#bat2", 
-	"clock" 
+	"group/audio",
+	"group/brightness",
+	"clock",
+	"custom/power"
 	// "tray"
     ],
+    "custom/power": {
+	"on-click": "wlogout",
+	"format": ""
+    },
+    "group/brightness": {
+	"modules": [
+		"backlight",
+		"backlight/slider",
+	],
+	"orientation": "inherit",
+	"drawer": {
+		"transition-duration": 300,
+        	"transition-left-to-right": false,
+	}
+    },
+    "group/audio": {
+    	"modules": [
+		"pulseaudio",
+		"pulseaudio/slider",
+	],
+	"orientation": "inherit",
+	"drawer": {
+		"transition-duration": 300,
+		"transition-left-to-right": false,
+	}
+    },
+    "backlight/slider": {
+	"min": 0,
+    	"max": 100,
+	"orintation": "vertical",
+    },
     // Modules configuration
     // "sway/workspaces": {
     //     "disable-scroll": true,
@@ -152,14 +186,15 @@
         // "format-alt": "{ifname}: {ipaddr}/{cidr}"
     },
     "pulseaudio": {
-        "scroll-step": 1, // %, can be a float
-        "format": "{volume}% {icon} {format_source}",
-        "format-bluetooth": "{volume}% {icon} {format_source}",
-        "format-bluetooth-muted": " {icon} {format_source}",
-        "format-muted": " {format_source}",
-        "format-source": "{volume}% ",
-        "format-source-muted": "",
-        "format-icons": {
+        // "scroll-step": 1, // %, can be a float
+        // "format": "{volume}% {icon} {format_source}",
+        // "format-bluetooth": "{volume}% {icon} {format_source}",
+        // "format-bluetooth-muted": " {icon} {format_source}",
+        // "format-muted": " {format_source}",
+        // "format-source": "{volume}% ",
+        // "format-source-muted": "",
+        "format": "{volume}% {icon}",
+	"format-icons": {
             "headphone": "",
             "hands-free": "",
             "headset": "",
@@ -168,7 +203,7 @@
             "car": "",
             "default": ["", "", ""]
         },
-        "on-click": "pavucontrol"
+        // "on-click": "pavucontrol"
 	// "on-scroll-up": "pactl set-sink-mute 0 false ; pactl set-sink-volume 0 -5%",
 	// "on-scroll-down": "pactl set-sink-mute 0 false ; pactl set-sink-volume 0 +5%"
     },

@@ -4,7 +4,7 @@
 * {
     /* `otf-font-awesome` is required to be installed for icons */
     font-family: FontAwesome, Roboto, Helvetica, Arial, sans-serif;
-    font-size: 15px;
+    font-size: 14px;
 }
 
 window#waybar {
@@ -81,6 +81,9 @@ button:hover {
 #mode,
 #idle_inhibitor,
 #scratchpad,
+#custom-power,
+#backlight-slider,
+#pulseaudio-slider,
 #mpd {
     padding: 0 10px;
     color: #ffffff;
@@ -241,4 +244,12 @@ label:focus {
 }
 
 #scratchpad.empty {
+}
+
+#backlight-slider {
+    min-width: 100px;
+}
+
+#pulseaudio-slider {
+    min-width: 100px;
 }

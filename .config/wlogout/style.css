@@ -21,6 +21,7 @@ button {
 	background-color: @color1;
 	color: @color15;
 	margin: 10px;
+	border-radius: 20px;
 }
 
 button:focus, button:active, button:hover {
