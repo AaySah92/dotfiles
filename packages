@@ -10,6 +10,7 @@ dosfstools 4.2-3
 efibootmgr 18-2
 firefox 119.0.1-1
 git 2.42.1-1
+grim 1.4.1-1
 grub 2:2.12rc1-5
 hyprland 0.30.0-1
 hyprpaper 0.4.0-1
@@ -23,6 +24,7 @@ lvm2 2.03.22-2
 mako 1.8.0-1
 man-db 2.12.0-1
 mesa 1:23.2.1-2
+mirage 0.11.1-4
 mtools 1:4.0.43-1
 nemo 5.8.5-1
 neofetch 7.1.0-2

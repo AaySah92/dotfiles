@@ -17,3 +17,4 @@ alias p='sudo pacman'
 alias logout='hyprctl dispatch exit'
 alias config='/usr/bin/git --git-dir=$HOME/dotfiles --work-tree=$HOME'
 . /usr/share/autojump/autojump.bash
+neofetch
