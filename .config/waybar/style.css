@@ -155,19 +155,21 @@ label:focus {
     background-color: #000000;
 }
 
+#cpu, #memory, #temperature {
+    min-width: 55px;
+}
+
 #cpu {
     margin-right: 0px;
     border-top-right-radius: 0px;
     border-bottom-right-radius: 0px;
     padding-right: 0px;
-    min-width: 30px;
 }
 
 #memory {
     margin-left: 0px;
     margin-right: 0px;
     border-radius: 0px;
-    min-width: 30px;
 }
 
 #temperature {
@@ -175,14 +177,13 @@ label:focus {
     border-top-left-radius: 0px;
     border-bottom-left-radius: 0px;
     padding-left: 0px;
-    min-width: 30px;
 }
 
 #disk {
 }
 
 #backlight {
-    min-width: 30px;
+    min-width: 60px;
 }
 
 #network {
@@ -192,7 +193,7 @@ label:focus {
 }
 
 #pulseaudio {
-    min-width: 30px;
+    min-width: 60px;
 }
 
 #pulseaudio.muted {
