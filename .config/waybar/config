@@ -46,6 +46,10 @@
 		"transition-left-to-right": false,
 	}
     },
+    "pulseaudio/slider": {
+    	"min": 0,
+	"max": 200,
+    },
     "custom/hardware-icon": {
 	"format": ""
     },
@@ -99,7 +103,7 @@
     },
     "cpu": {
         "format": "{usage}% ",
-        "tooltip": false
+        // "tooltip": false
     },
     "memory": {
         "format": "{}% "
@@ -157,6 +161,7 @@
             "car": "",
             "default": ["", "", ""]
         },
+	"max-volume": 200,
         // "on-click": "pavucontrol"
 	// "on-scroll-up": "pactl set-sink-mute 0 false ; pactl set-sink-volume 0 -5%",
 	// "on-scroll-down": "pactl set-sink-mute 0 false ; pactl set-sink-volume 0 +5%"

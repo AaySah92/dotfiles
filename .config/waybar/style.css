@@ -121,12 +121,12 @@ button:hover {
 }
 
 #clock {
+    background-color: @color7;
+    border-color: @color7;
+    color: #000000;
 }
 
 #battery {
-    background-color: #ffffff;
-    /* border-color: #ffffff; */
-    color: #000000;
 }
 
 #battery.charging, #battery.plugged {
