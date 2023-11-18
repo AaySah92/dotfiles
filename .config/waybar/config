@@ -4,13 +4,21 @@
     "spacing": 4, // Gaps between modules (4px)
     // Choose the order of the modules
     "modules-left": [
-    	"hyprland/workspaces", 
-	"wlr/taskbar",
-	"sway/mode", 
-	"sway/scratchpad", 
-	"custom/media"
+    	"hyprland/workspaces" 
+	// "wlr/taskbar",
+	// "sway/mode", 
+	// "sway/scratchpad", 
+	// "custom/media"
     ],
     // "modules-center": ["sway/window"],
+    "hyprland/workspaces": {
+	"on-click": "activate",
+	"format": "{icon}",
+	"format-icons": {
+		"default": "",
+		"active": ""
+	},
+    },
     "modules-right": [
 	"group/audio",
 	"group/brightness",

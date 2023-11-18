@@ -8,10 +8,7 @@
 }
 
 window#waybar {
-    /*background-color: rgba(43, 48, 59, 0.5);*/
     background-color: rgba(255, 0, 0, 0);
-    /*border-bottom: 3px solid rgba(100, 114, 125, 0.5);*/
-    /*color: #ffffff;*/
     transition-property: background-color;
     transition-duration: .5s;
 }
@@ -43,28 +40,24 @@ button:hover {
     box-shadow: inset 0 -3px #ffffff;
 }
 
+.modules-left {
+    padding-left: 10px;
+}
+
+.modules-right {
+    padding-right: 10px;
+}
+
 #workspaces button {
-    padding: 0 5px;
     background-color: transparent;
     color: #ffffff;
+    padding: 10px; 
+    margin: 5px 0px;
 }
 
 #workspaces button:hover {
-    background: rgba(0, 0, 0, 0.2);
-}
-
-#workspaces button.focused {
-    background-color: #64727D;
-    box-shadow: inset 0 -3px #ffffff;
-}
-
-#workspaces button.urgent {
-    background-color: #eb4d4b;
-}
-
-#mode {
-    background-color: #64727D;
-    border-bottom: 3px solid #ffffff;
+    box-shadow: inherit;
+    /*text-shadow: inherit;*/
 }
 
 #clock,
