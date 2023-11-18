@@ -23,6 +23,7 @@ linux 6.6.1.arch1-1
 linux-firmware 20231030.2b304bfe-1
 linux-headers 6.6.1.arch1-1
 lvm2 2.03.22-2
+lxappearance 0.6.3-4
 mako 1.8.0-1
 man-db 2.12.0-1
 mesa 1:23.2.1-2
@@ -47,7 +48,7 @@ python-pywal 3.3.0-8
 qt6-wayland 6.6.0-1
 radeontop 1.4-2
 reflector 2023-1
-swaylock 1.7.2-1
+swaylock-effects 1.6.4-2
 tmux 3.3_a-7
 tree 2.1.1-1
 ttf-dejavu 2.37+18+g9b5d1b2f-4

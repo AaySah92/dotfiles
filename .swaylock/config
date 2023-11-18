@@ -1,1 +1,9 @@
-image="$HOME/Downloads/wall2.jpg"
+clock
+timestr=%R
+datestr=%a, %e of %B
+indicator-radius=150
+screenshots
+fade-in=0.2
+effect-scale=0.5
+effect-blur=5x2
+effect-scale=2.0
