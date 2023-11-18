@@ -18,7 +18,4 @@ while getopts ":w" opt; do
     esac
 done
 
-# hyprctl hyprpaper preload $WALLPAPER
-# hyprctl hyprpaper wallpaper "$MONITOR,$WALLPAPER"
-
 hyprpaper & waybar

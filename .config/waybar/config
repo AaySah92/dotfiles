@@ -4,6 +4,7 @@
     "spacing": 4, // Gaps between modules (4px)
     // Choose the order of the modules
     "modules-left": [
+    	"image#arch-logo",
     	"hyprland/workspaces" 
 	// "wlr/taskbar",
 	// "sway/mode", 
@@ -11,6 +12,11 @@
 	// "custom/media"
     ],
     // "modules-center": ["sway/window"],
+    "image#arch-logo": {
+	"path": "/home/aayush/Downloads/arch-logo.png",
+	"size": 40,
+	"interval": 5,
+    },
     "hyprland/workspaces": {
 	"on-click": "activate",
 	"format": "{icon}",
