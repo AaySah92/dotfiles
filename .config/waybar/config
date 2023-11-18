@@ -18,6 +18,12 @@
 		"default": "",
 		"active": ""
 	},
+	"persistent_workspaces": {
+		"1": [],
+		"2": [],
+		"3": [],
+		"4": []
+	}
     },
     "modules-right": [
 	"group/audio",
