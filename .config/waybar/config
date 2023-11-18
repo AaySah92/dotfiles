@@ -18,11 +18,34 @@
 	"group/hardware",
 	"clock",
 	"battery", 
-	"custom/power"
+	"group/power",
     ],
+    "group/power": {
+	"modules": [
+		"custom/power",
+		"custom/logout",
+		"custom/reboot",
+	],
+	"orientation": "inherit",
+	"drawer": {
+		"transition-duration": 300,
+        	"transition-left-to-right": false,
+	}
+    },
+    "custom/logout": {
+	"on-click": "loginctl terminate-user $USER",
+	"format": "",
+	"tooltip": false,
+    },
+    "custom/reboot": {
+	"on-click": "systemctl reboot",
+	"format": "",
+	"tooltip": false,
+    },
     "custom/power": {
-	"on-click": "wlogout",
-	"format": ""
+	"on-click": "systemctl poweroff",
+	"format": "",
+	"tooltip": false,
     },
     "group/brightness": {
 	"modules": [

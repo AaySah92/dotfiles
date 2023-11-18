@@ -82,6 +82,8 @@ button:hover {
 #idle_inhibitor,
 #scratchpad,
 #custom-power,
+#custom-reboot,
+#custom-logout,
 #backlight-slider,
 #pulseaudio-slider,
 #mpd {
@@ -177,6 +179,18 @@ label:focus {
     border-top-left-radius: 0px;
     border-bottom-left-radius: 0px;
     padding-left: 0px;
+}
+
+#custom-logout {
+    margin-right: 0px;
+    border-top-right-radius: 0px;
+    border-bottom-right-radius: 0px;
+}
+
+#custom-reboot {
+    border-top-left-radius: 0px;
+    border-bottom-left-radius: 0px;
+    margin-left: 0px;
 }
 
 #disk {
