@@ -17,6 +17,7 @@ htop 3.2.2-1
 hyprland 0.30.0-1
 hyprpaper 0.4.0-1
 less 1:643-1
+libreoffice-still 7.5.8-1
 libva-mesa-driver 1:23.2.1-2
 libva-utils 2.20.0-1
 linux 6.6.1.arch1-1
@@ -34,8 +35,8 @@ mtools 1:4.0.43-1
 nemo 5.8.5-1
 neofetch 7.1.0-2
 neovim 0.9.4-2
-netctl 1.29-1
 networkmanager 1.44.2-3
+nm-connection-editor 1.34.0-1
 noto-fonts 1:23.11.1-1
 noto-fonts-emoji 1:2.040-1
 openssh 9.5p1-1
@@ -45,7 +46,7 @@ polkit-kde-agent 5.27.9-1
 pulseaudio 16.1-6
 pulseaudio-alsa 1:1.2.7.1-2
 python-pywal 3.3.0-8
-qt6-wayland 6.6.0-1
+qt6-wayland 6.6.0-2
 radeontop 1.4-2
 reflector 2023-1
 starship 1.16.0-1
