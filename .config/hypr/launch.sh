@@ -3,7 +3,7 @@
 CONFIG="$HOME/.config"
 MONITOR=$(hyprctl monitors | awk '{print $2}' | head -n 1)
 #WALLPAPER="$HOME/Downloads/wall9.jpg"
-WALLPAPER="$HOME/Downloads/wall.png"
+WALLPAPER="$HOME/Downloads/wall10.png"
 
 while getopts ":w" opt; do
     case $opt in
