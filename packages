@@ -32,6 +32,7 @@ mesa 1:23.2.1-2
 mesa-utils 9.0.0-3
 mesa-vdpau 1:23.2.1-2
 mirage 0.11.1-4
+mpv 1:0.36.0-1
 mtools 1:4.0.43-1
 nemo 5.8.5-1
 neofetch 7.1.0-2
@@ -60,6 +61,7 @@ ttf-firacode-nerd 3.0.2-1
 ttf-font-awesome 6.4.2-1
 unzip 6.0-20
 waybar 0.9.24-1
+wf-recorder 0.4.1-1
 wireless_tools 30.pre9-3
 wofi 1.3-2
 wpa_supplicant 2:2.10-8
