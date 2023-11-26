@@ -13,7 +13,6 @@ PS1='[\u@\h \W]\$ '
 
 (cat ~/.cache/wal/sequences &)
 
-alias launch='$HOME/.config/hypr/launch.sh -w &>/dev/null &'
 alias vi='nvim'
 alias p='sudo pacman'
 alias logout='hyprctl dispatch exit'

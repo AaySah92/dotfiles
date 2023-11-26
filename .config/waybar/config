@@ -13,7 +13,7 @@
     ],
     // "modules-center": ["sway/window"],
     "image#arch-logo": {
-	"path": "/home/aayush/Downloads/arch-logo.png",
+	"path": "/home/aayush/.config/waybar/arch-logo.png",
 	"size": 40,
 	"interval": 5,
     },
@@ -141,11 +141,11 @@
         "spacing": 10
     },
     "clock": {
-    	"format": " {:%I:%M %p  /   %F}",
+    	"format": "{:%I:%M %p  /  %F}",
         "tooltip-format": "<big>{:%Y %B}</big>\n<tt><big>{calendar}</big></tt>",
     },
     "cpu": {
-        "format": "{usage}% ",
+        "format": "{usage}% ",
         // "tooltip": false
     },
     "memory": {
@@ -169,12 +169,13 @@
             "critical": 15
         },
         "format": "{capacity}% {icon}",
-        "format-charging": "{capacity}% ",
-        "format-plugged": "{capacity}% ",
-        "format-alt": "{time} {icon}",
+        "format-charging": "{capacity}% 󱐋",
+        "format-plugged": "{capacity}% 󱐋",
+        // "format-alt": "{time} {icon}",
         // "format-good": "", // An empty format will hide the module
         // "format-full": "",
-        "format-icons": ["", "", "", "", ""]
+        "format-icons": ["󰂃", "󰁼", "󰁾", "󰂁", "󰁹"],
+	"interval": 1
     },
     "network": {
         // "interface": "wlp2*", // (Optional) To force the use of this interface

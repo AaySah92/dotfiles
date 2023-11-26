@@ -4,3 +4,9 @@ disabled = false
 
 [os.symbols]
 Arch = ""
+
+[battery]
+disabled = true
+
+[cmd_duration]
+disabled = true
