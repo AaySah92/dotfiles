@@ -6,6 +6,7 @@ base-devel 1-1
 blueman 2.3.5-2
 bluez-utils 5.70-1
 chromium 119.0.6045.159-1
+clipmon-git r54.2e338fd-1
 dialog 1:1.3_20231002-1
 dosfstools 4.2-3
 efibootmgr 18-2
