@@ -13,9 +13,11 @@ while getopts "pc" opt; do
             MONITOR=$(hyprctl monitors | awk '{print $2}' | head -n 1)
             WALLPAPER=$(find "$HOME/Wallpapers/" -type f | shuf -n 1)
             wal -nq -i $WALLPAPER
-            hyprctl hyprpaper wallpaper "$MONITOR,$WALLPAPER"
             echo "preload = $WALLPAPER" > "$CONFIG/hypr/hyprpaper.conf"
-	    echo "wallpaper = ,$WALLPAPER" >> "$CONFIG/hypr/hyprpaper.conf"
+            for monitor in $(hyprctl monitors | grep Monitor | awk '{print $2}'); do
+                hyprctl hyprpaper wallpaper "$monitor,$WALLPAPER"
+	        echo "wallpaper = $monitor,$WALLPAPER" >> "$CONFIG/hypr/hyprpaper.conf"
+            done
             if ps aux | grep -v grep | grep "waybar" > /dev/null; then
                 killall waybar
             fi
