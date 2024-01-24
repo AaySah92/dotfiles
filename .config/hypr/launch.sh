@@ -19,7 +19,7 @@ while getopts "pc" opt; do
 	        echo "wallpaper = $monitor,$WALLPAPER" >> "$CONFIG/hypr/hyprpaper.conf"
             done
             echo "splash = false" >> "$CONFIG/hypr/hyprpaper.conf"
-            echo "ipc = off" >> "$CONFIG/hypr/hyprpaper.conf"
+            # echo "ipc = off" >> "$CONFIG/hypr/hyprpaper.conf"
             if ps aux | grep -v grep | grep "waybar" > /dev/null; then
                 killall waybar
             fi
