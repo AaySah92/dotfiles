@@ -7,7 +7,6 @@ blueman 2.3.5-3
 bluez-utils 5.72-2
 chromium 122.0.6261.39-1
 clipmon-git r54.2e338fd-1
-code 1.86.0-1
 dialog 1:1.3_20240101-1
 dosfstools 4.2-3
 efibootmgr 18-2
@@ -20,14 +19,12 @@ hyprland 0.35.0-2
 hyprpaper 0.6.0-2
 illum-git 0.5.r2.g6d56b3b-1
 less 1:643-1
-libreoffice-still 7.6.4-1
 libva-mesa-driver 1:23.3.5-1
 libva-utils 2.20.1-1
 linux 6.7.4.arch1-1
 linux-firmware 20240115.9b6d0b08-2
 linux-headers 6.7.4.arch1-1
 lvm2 2.03.23-1
-lxappearance 0.6.3-4
 mako 1.8.0-1
 man-db 2.12.0-1
 mesa 1:23.3.5-1
@@ -48,7 +45,6 @@ npm 10.4.0-2
 openssh 9.6p1-1
 os-prober 1.81-1
 otf-font-awesome 6.5.1-1
-pavucontrol 1:5.0+r64+geba9ca6-1
 polkit-kde-agent 5.27.10-1
 pulseaudio 17.0-3
 pulseaudio-alsa 1:1.2.7.1-2
@@ -70,7 +66,6 @@ ttf-firacode-nerd 3.1.1-1
 ttf-font-awesome 6.5.1-1
 unzip 6.0-20
 vim 9.1.0080-1
-vivaldi-ffmpeg-codecs 120.0.6099.80-1
 vlc 3.0.20-7
 waybar 0.9.24-3
 wf-recorder 0.4.1-1
