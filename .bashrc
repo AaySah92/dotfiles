@@ -15,7 +15,8 @@ PS1='[\u@\h \W]\$ '
 
 alias p='sudo pacman'
 alias logout='hyprctl dispatch exit'
-alias wifi='nmcli device wifi connect VM1696793 --ask'
+# alias wifi='nmcli device wifi connect VM1696793 --ask'
+alias wifi='nmcli con up id VM1696793'
 alias config='/usr/bin/git --git-dir=$HOME/dotfiles --work-tree=$HOME'
 . /usr/share/autojump/autojump.bash
 neofetch
