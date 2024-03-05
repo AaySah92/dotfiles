@@ -2,8 +2,11 @@
 size = 14.0
 
 [window]
-opacity = 0.8
+opacity = 0.6
 
 [window.padding]
 x = 10
 y = 10
+
+[colors]
+transparent_background_colors = true
