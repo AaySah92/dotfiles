@@ -32,6 +32,7 @@
 	}
     },
     "modules-right": [
+	"group/yt-radio",
 	"group/audio",
 	"group/brightness",
 	"network",
@@ -40,6 +41,25 @@
 	"battery", 
 	"group/power",
     ],
+    "group/yt-radio": {
+	"modules": [
+		"custom/yt-radio-title",
+		"custom/yt-radio-button",
+	],
+	"orientation": "inherit",
+    },
+    "custom/yt-radio-title": {
+	"tooltip": false,
+	"return-type": "json",
+	"interval": 1,
+	"exec": "$HOME/.config/waybar/yt-radio/yt title",
+    },
+    "custom/yt-radio-button": {
+	"format": "",
+	"on-click": "$HOME/.config/waybar/yt-radio/yt play",
+	"on-click-right": "$HOME/.config/waybar/yt-radio/yt stop",
+	"tooltip": false,
+    },
     "group/power": {
 	"modules": [
 		"custom/power",

@@ -79,7 +79,10 @@ button:hover {
 #custom-logout,
 #backlight-slider,
 #pulseaudio-slider,
-#mpd {
+#mpd,
+#custom-yt-radio-title,
+#custom-yt-radio-button
+{
     padding: 0 10px;
     color: #ffffff;
     border-radius: 20px; 
@@ -184,6 +187,26 @@ label:focus {
     border-top-left-radius: 0px;
     border-bottom-left-radius: 0px;
     margin-left: 0px;
+}
+
+#custom-yt-radio-title {
+    margin-right: 0px;
+    border-top-right-radius: 0px;
+    border-bottom-right-radius: 0px;
+    background-color: @color7;
+    border-color: @color7;
+    color: #000000;
+    min-width: 100px;
+}
+
+#custom-yt-radio-button {
+    border-top-left-radius: 0px;
+    border-bottom-left-radius: 0px;
+    margin-left: 0px;
+    font-size: 30px;
+    padding: 2px 15px;
+    background-color: #990000; 
+    border-color: #990000;
 }
 
 #disk {
