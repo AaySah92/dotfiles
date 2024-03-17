@@ -56,8 +56,7 @@
     },
     "custom/yt-radio-button": {
 	"format": "",
-	"on-click": "$HOME/.config/waybar/yt-radio/yt play",
-	"on-click-right": "$HOME/.config/waybar/yt-radio/yt stop",
+	"on-click": "$HOME/.config/waybar/yt-radio/yt toggle",
 	"tooltip": false,
     },
     "group/power": {

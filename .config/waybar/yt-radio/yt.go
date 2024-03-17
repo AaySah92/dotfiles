@@ -1,9 +1,12 @@
 package main
 
-import "os"
-import "encoding/json"
-import "net"
-import "fmt"
+import (
+	"encoding/json"
+	"fmt"
+	"net"
+	"os"
+	"strings"
+)
 
 func check(err error) {
 	if err != nil {
@@ -11,21 +14,23 @@ func check(err error) {
 	}
 }
 
-type Config struct {
-	Playlist 	[]Playlist	`json:"playlist"`
-	Playing		int		`json:"playing"`
-}
-
-type Playlist struct {
-	Title		string		`json:"title"`	
-	Link		string		`json:"link"`	
-}
-
-func loadConfig() Config {
+func getUserHomeDir() string {
 	userHomeDir, err := os.UserHomeDir()
 	check(err)
 
-	configData, err := os.ReadFile(userHomeDir + "/.config/waybar/yt-radio/config")
+	return userHomeDir
+}
+
+type Config struct {
+	Playlist 	[]string	`json:"playlist"`
+}
+
+type Cache struct {
+	Playing		int	`json:"playing"`
+}
+
+func readConfig() Config {
+	configData, err := os.ReadFile(configDir)
 	check(err)
 
 	var config Config
@@ -33,6 +38,24 @@ func loadConfig() Config {
 	check(err)
 
 	return config
+}
+
+func readCache() Cache {
+	cacheData, err := os.ReadFile(cacheDir)
+	check(err)
+
+	var cache Cache
+	err = json.Unmarshal(cacheData, &cache)
+	check(err)
+	
+	return cache
+}
+
+func writeCache(cache Cache) {
+	cacheJson, err := json.Marshal(cache)
+	check(err)
+
+	os.WriteFile(cacheDir, []byte(cacheJson), 0644)
 }
 
 type IpcConnection struct {
@@ -50,14 +73,14 @@ func (ipcConnection *IpcConnection) closeConnection() {
 }
 
 func (ipcConnection *IpcConnection) sendCommand(options []string) {
-	command, err := json.Marshal(map[string][]string{"command": options})
+	commandJson, err := json.Marshal(map[string][]string{"command": options})
 	check(err)
 
-	_, err = ipcConnection.Connection.Write([]byte(string(command) + "\n"))
+	_, err = ipcConnection.Connection.Write([]byte(string(commandJson) + "\n"))
 	check(err)
 }
 
-func (ipcConnection *IpcConnection) getCommand(options []string) string {
+func (ipcConnection *IpcConnection) getCommand(options []string) interface{} {
 	ipcConnection.sendCommand(options)
 	response := make([]byte, 1024)
 	n, err := ipcConnection.Connection.Read(response)
@@ -71,33 +94,46 @@ func (ipcConnection *IpcConnection) getCommand(options []string) string {
 		panic(responseJson["error"].(string))
 	}
 
-	return responseJson["data"].(string)
+	return responseJson["data"]
 }
 
+var configDir		string 		= getUserHomeDir() + "/.config/waybar/yt-radio/config.json"
+var cacheDir		string 		= getUserHomeDir() + "/.cache/yt-radio/state.json"
+var config		Config 		= readConfig()
+var cache 		Cache 		= readCache()
+var ipcConnection	IpcConnection	= getIpcConnection()
+
 func main() {
+	defer ipcConnection.closeConnection()
+
 	if len(os.Args) == 0 {
 		panic("No arguments passed")
 	}
 	arg := os.Args[1]
-	
-	var config 		Config 		= loadConfig()
-	var ipcConnection	IpcConnection 	= getIpcConnection()
-	
-	defer ipcConnection.closeConnection()
-	
+
+	playingFlag := !ipcConnection.getCommand([]string{"get_property", "idle-active"}).(bool)
+
 	switch arg {
-	case "play":
-		ipcConnection.sendCommand([]string{"loadfile", config.Playlist[config.Playing].Link})
-	case "stop":
-		ipcConnection.sendCommand([]string{"stop"})
-	case "title":
-		response := ipcConnection.getCommand([]string{"get_property", "media-title"})
-		if len(response) > 30 {
-			response = response[:30]
+	case "toggle":
+		if playingFlag {
+			ipcConnection.sendCommand([]string{"stop"})
+		} else {
+			ipcConnection.sendCommand([]string{"loadfile", config.Playlist[cache.Playing]})
 		}
-		response += "..."
-		
-		responseJson, err := json.Marshal(map[string]string{"text": response})
+	case "title":
+		var mediaTitle string
+
+		if playingFlag {
+			mediaTitle := ipcConnection.getCommand([]string{"get_property", "media-title"}).(string)
+			if strings.HasPrefix(mediaTitle, "watch") {
+				mediaTitle = "Connecting"
+			} else if len(mediaTitle) > 30 {
+				mediaTitle = mediaTitle[:30]
+			}
+			mediaTitle += "..."
+		} 		
+
+		responseJson, err := json.Marshal(map[string]string{"text": mediaTitle})
 		check(err)
 		fmt.Println(string(responseJson))
 	}

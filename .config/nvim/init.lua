@@ -1,1 +1,2 @@
-require("asahay")
+require("asahay/lazy")
+require("asahay/remap")
