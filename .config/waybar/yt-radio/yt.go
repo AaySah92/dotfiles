@@ -26,7 +26,7 @@ type Config struct {
 }
 
 type Cache struct {
-	Playing		int	`json:"playing"`
+	Playing		int		`json:"playing"`
 }
 
 func readConfig() Config {
@@ -97,6 +97,11 @@ func (ipcConnection *IpcConnection) getCommand(options []string) interface{} {
 	return responseJson["data"]
 }
 
+func play (cache Cache) {
+	ipcConnection.sendCommand([]string{"loadfile", config.Playlist[cache.Playing]})
+	writeCache(cache)
+}
+
 var configDir		string 		= getUserHomeDir() + "/.config/waybar/yt-radio/config.json"
 var cacheDir		string 		= getUserHomeDir() + "/.cache/yt-radio/state.json"
 var config		Config 		= readConfig()
@@ -118,20 +123,36 @@ func main() {
 		if playingFlag {
 			ipcConnection.sendCommand([]string{"stop"})
 		} else {
-			ipcConnection.sendCommand([]string{"loadfile", config.Playlist[cache.Playing]})
+			play(cache)
+		}
+	case "next":
+		if playingFlag {
+			cache.Playing++
+			if cache.Playing >= len(config.Playlist) {
+				cache.Playing = 0
+			}
+			play(cache)
+		}
+	case "previous":
+		if playingFlag {
+			cache.Playing--
+			if cache.Playing < 0 {
+				cache.Playing = len(config.Playlist) - 1
+			}
+			play(cache)
 		}
 	case "title":
 		var mediaTitle string
 
 		if playingFlag {
-			mediaTitle := ipcConnection.getCommand([]string{"get_property", "media-title"}).(string)
+			mediaTitle = ipcConnection.getCommand([]string{"get_property", "media-title"}).(string)
 			if strings.HasPrefix(mediaTitle, "watch") {
 				mediaTitle = "Connecting"
 			} else if len(mediaTitle) > 30 {
 				mediaTitle = mediaTitle[:30]
 			}
 			mediaTitle += "..."
-		} 		
+		}
 
 		responseJson, err := json.Marshal(map[string]string{"text": mediaTitle})
 		check(err)

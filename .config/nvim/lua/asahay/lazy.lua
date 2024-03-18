@@ -11,9 +11,14 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 require("lazy").setup({
-	{ "catppuccin/nvim", name = "catppuccin", priority = 1000, config=function ()
-		vim.cmd("colorscheme catppuccin")
-	end},
+	{
+		"catppuccin/nvim",
+		name = "catppuccin",
+		priority = 1000,
+		config=function ()
+			vim.cmd("colorscheme catppuccin")
+		end
+	},
 
 	{ 'nvim-telescope/telescope.nvim', tag = '0.1.6', dependencies = { 'nvim-lua/plenary.nvim' } },
 	{ "nvim-treesitter/nvim-treesitter", build = ":TSUpdate" },
@@ -39,11 +44,12 @@ require("lazy").setup({
 			"TmuxNavigatePrevious",
 			},
 		keys = {
-			{ "<c-h>", "<cmd><C-U>TmuxNavigateLeft<cr>" },
-			{ "<c-j>", "<cmd><C-U>TmuxNavigateDown<cr>" },
-			{ "<c-k>", "<cmd><C-U>TmuxNavigateUp<cr>" },
-			{ "<c-l>", "<cmd><C-U>TmuxNavigateRight<cr>" },
+			{ "<M-Left>", "<cmd><C-U>TmuxNavigateLeft<cr>" },
+			{ "<M-Down>", "<cmd><C-U>TmuxNavigateDown<cr>" },
+			{ "<M-Up>", "<cmd><C-U>TmuxNavigateUp<cr>" },
+			{ "<M-Right>", "<cmd><C-U>TmuxNavigateRight<cr>" },
 			{ "<c-\\>", "<cmd><C-U>TmuxNavigatePrevious<cr>" },
 		},
 	},
+	{'numToStr/Comment.nvim'},
 })

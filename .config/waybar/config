@@ -57,7 +57,10 @@
     "custom/yt-radio-button": {
 	"format": "",
 	"on-click": "$HOME/.config/waybar/yt-radio/yt toggle",
+	"on-scroll-up": "$HOME/.config/waybar/yt-radio/yt next",
+	"on-scroll-down": "$HOME/.config/waybar/yt-radio/yt previous",
 	"tooltip": false,
+	"smooth-scrolling-threshold": 13,
     },
     "group/power": {
 	"modules": [

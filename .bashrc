@@ -11,6 +11,8 @@ alias ls='ls --color=auto'
 alias grep='grep --color=auto'
 PS1='[\u@\h \W]\$ '
 
+export TERM='xterm-256color'
+
 (cat ~/.cache/wal/sequences &)
 
 alias p='sudo pacman'
