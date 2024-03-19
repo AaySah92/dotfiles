@@ -2,9 +2,12 @@ package main
 
 import (
 	"encoding/json"
+	"errors"
 	"fmt"
+	"io/fs"
 	"net"
 	"os"
+	"path"
 	"strings"
 )
 
@@ -14,58 +17,47 @@ func check(err error) {
 	}
 }
 
-func getUserHomeDir() string {
-	userHomeDir, err := os.UserHomeDir()
-	check(err)
-
-	return userHomeDir
-}
-
 type Config struct {
-	Playlist 	[]string	`json:"playlist"`
+	Playlist	[]string	`json:"playlist"`
 }
 
 type Cache struct {
 	Playing		int		`json:"playing"`
 }
 
-func readConfig() Config {
-	configData, err := os.ReadFile(configDir)
-	check(err)
+func readFromFile[T Config | Cache] (objectPath string, object *T) {
+	data, err := os.ReadFile(objectPath)
+	if errors.Is(err, fs.ErrNotExist) {
+		writeToFile(objectPath, object)
+		return
+	} else {
+		check(err)
+	}
 
-	var config Config
-	err = json.Unmarshal(configData, &config)
+	err = json.Unmarshal(data, object)
 	check(err)
-
-	return config
 }
 
-func readCache() Cache {
-	cacheData, err := os.ReadFile(cacheDir)
+func writeToFile[T Config | Cache] (objectPath string, object *T) {
+	data, err := json.Marshal(*object)
 	check(err)
 
-	var cache Cache
-	err = json.Unmarshal(cacheData, &cache)
-	check(err)
-	
-	return cache
-}
-
-func writeCache(cache Cache) {
-	cacheJson, err := json.Marshal(cache)
+	dir := path.Dir(objectPath)
+	err = os.MkdirAll(dir, 0755)
 	check(err)
 
-	os.WriteFile(cacheDir, []byte(cacheJson), 0644)
+	err = os.WriteFile(objectPath, []byte(data), 0644)
+	check(err)
 }
 
 type IpcConnection struct {
 	Connection	net.Conn
 }
 
-func getIpcConnection() IpcConnection {
+func (ipcConnection *IpcConnection) openConnection() {
 	connection, err := net.Dial("unix", "/tmp/mpvsocket")
 	check(err)
-	return IpcConnection{Connection: connection}
+	ipcConnection.Connection = connection
 }
 
 func (ipcConnection *IpcConnection) closeConnection() {
@@ -97,19 +89,38 @@ func (ipcConnection *IpcConnection) getCommand(options []string) interface{} {
 	return responseJson["data"]
 }
 
-func play (cache Cache) {
-	ipcConnection.sendCommand([]string{"loadfile", config.Playlist[cache.Playing]})
-	writeCache(cache)
+func play (currentPlaying int) {
+	ipcConnection.sendCommand([]string{"loadfile", config.Playlist[currentPlaying]})
+	cache.Playing = currentPlaying
+	writeToFile(cachePath, &cache)
 }
 
-var configDir		string 		= getUserHomeDir() + "/.config/waybar/yt-radio/config.json"
-var cacheDir		string 		= getUserHomeDir() + "/.cache/yt-radio/state.json"
-var config		Config 		= readConfig()
-var cache 		Cache 		= readCache()
-var ipcConnection	IpcConnection	= getIpcConnection()
+var configPath		string	= "/waybar/yt-radio/config.json"
+var cachePath		string	= "/yt-radio/yt-radio-cache"
+
+var config		Config
+var cache		Cache
+var ipcConnection	IpcConnection 
 
 func main() {
+	ipcConnection.openConnection()
 	defer ipcConnection.closeConnection()
+
+	userConfigDir, err := os.UserConfigDir()
+	check(err)
+
+	userCacheDir, err := os.UserCacheDir()
+	check(err)
+
+	configPath	= userConfigDir	+ configPath
+	cachePath	= userCacheDir	+ cachePath
+
+	readFromFile(configPath, &config)
+	readFromFile(cachePath, &cache)
+
+	if len(config.Playlist) == 0 {
+		panic("No tracks in playlist")
+	}
 
 	if len(os.Args) == 0 {
 		panic("No arguments passed")
@@ -117,44 +128,48 @@ func main() {
 	arg := os.Args[1]
 
 	playingFlag := !ipcConnection.getCommand([]string{"get_property", "idle-active"}).(bool)
+	currentPlaying := cache.Playing
 
 	switch arg {
 	case "toggle":
 		if playingFlag {
 			ipcConnection.sendCommand([]string{"stop"})
 		} else {
-			play(cache)
+			play(currentPlaying)
 		}
 	case "next":
 		if playingFlag {
-			cache.Playing++
-			if cache.Playing >= len(config.Playlist) {
-				cache.Playing = 0
+			currentPlaying++
+			if currentPlaying >= len(config.Playlist) {
+				currentPlaying = 0
 			}
-			play(cache)
+			play(currentPlaying)
 		}
 	case "previous":
 		if playingFlag {
-			cache.Playing--
-			if cache.Playing < 0 {
-				cache.Playing = len(config.Playlist) - 1
+			currentPlaying--
+			if currentPlaying < 0 {
+				currentPlaying = len(config.Playlist) - 1
 			}
-			play(cache)
+			play(currentPlaying)
 		}
-	case "title":
-		var mediaTitle string
+	case "status":
+		text 	:= ""
+		class	:= ""
 
 		if playingFlag {
-			mediaTitle = ipcConnection.getCommand([]string{"get_property", "media-title"}).(string)
-			if strings.HasPrefix(mediaTitle, "watch") {
-				mediaTitle = "Connecting"
-			} else if len(mediaTitle) > 30 {
-				mediaTitle = mediaTitle[:30]
+			text = ipcConnection.getCommand([]string{"get_property", "media-title"}).(string)
+			if strings.HasPrefix(text, "watch") {
+				text = "Connecting"
+			} else if len(text) > 30 {
+				text = text[:30]
 			}
-			mediaTitle += "..."
+
+			text += "..."
+			class = "playing"
 		}
 
-		responseJson, err := json.Marshal(map[string]string{"text": mediaTitle})
+		responseJson, err := json.Marshal(map[string]string{"text": text, "class": class})
 		check(err)
 		fmt.Println(string(responseJson))
 	}

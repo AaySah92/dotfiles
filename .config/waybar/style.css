@@ -200,13 +200,16 @@ label:focus {
 }
 
 #custom-yt-radio-button {
-    border-top-left-radius: 0px;
-    border-bottom-left-radius: 0px;
     margin-left: 0px;
     font-size: 30px;
     padding: 2px 15px;
     background-color: #990000; 
     border-color: #990000;
+}
+
+#custom-yt-radio-button.playing {
+    border-top-left-radius: 0px;
+    border-bottom-left-radius: 0px;
 }
 
 #disk {
