@@ -22,4 +22,4 @@ alias wifi='nmcli con up id VM1696793'
 alias config='/usr/bin/git --git-dir=$HOME/dotfiles --work-tree=$HOME'
 . /usr/share/autojump/autojump.bash
 # neofetch
-
+pfetch

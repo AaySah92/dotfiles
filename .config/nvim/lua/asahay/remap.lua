@@ -1,5 +1,6 @@
 vim.g.mapleader = " "
 vim.keymap.set("n", "<leader>b", vim.cmd.Ex)
+vim.opt.clipboard:append { 'unnamed', 'unnamedplus' }
 
 -- vim.g.tmux_navigator_no_mappings = 1
 -- vim.keymap.set("n", "<M-h>", ":TmuxNavigateLeft<CR>", {silent = true})
