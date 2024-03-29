@@ -1,0 +1,7 @@
+[Nemo Action]
+Name=Set Wallpaper
+Comment=Set Wallpaper and Theme
+Selection=s
+Extensions=jpg;jpeg;png;
+Dependencies=python;/home/aayush/scripts/set-wallpaper/set-wallpaper.sh;
+Exec=/home/aayush/scripts/set-wallpaper/set-wallpaper.sh %F
