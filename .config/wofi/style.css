@@ -1,0 +1,38 @@
+window {
+	font-size: 20px;
+	background: transparent;
+	border: none;
+}
+
+#outer-box {
+	background-color: transparent;
+	border: none;
+}
+
+#input {
+	margin-bottom: 20px;
+	padding: 15px 30px;
+	background-color: --wofi-color0;
+	color: --wofi-color15;
+	opacity: 0.9;
+	border-color: --wofi-color3;
+}
+
+#inner-box {
+	background-color: --wofi-color0;
+	color: --wofi-color15;
+	opacity: 0.9;
+}
+
+#img {
+	margin-right: 15px;
+	height: 20px;
+}
+
+#entry {
+	padding: 15px 30px;
+}
+
+#entry:selected {
+	background-color: --wofi-color3;
+}

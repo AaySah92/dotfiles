@@ -1,0 +1,9 @@
+show=drun
+gtk_dark=true
+prompt=Search Applications
+allow_images=true
+matching=fuzzy
+hide_scroll=true
+parse_search=true
+drun-display_generic=true
+# normal_window=true
