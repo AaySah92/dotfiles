@@ -41,3 +41,4 @@ if ps aux | grep -v grep | grep "waybar" > /dev/null; then
 	killall waybar
 fi
 waybar 
+pywalfox update
