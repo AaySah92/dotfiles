@@ -34,22 +34,11 @@ require("lazy").setup({
 	{'L3MON4D3/LuaSnip'},
 
 	{'m4xshen/autoclose.nvim'},
-	{
-		"christoomey/vim-tmux-navigator",
-		cmd = {
-			"TmuxNavigateLeft",
-			"TmuxNavigateDown",
-			"TmuxNavigateUp",
-			"TmuxNavigateRight",
-			"TmuxNavigatePrevious",
-			},
-		keys = {
-			{ "<M-Left>", "<cmd><C-U>TmuxNavigateLeft<cr>" },
-			{ "<M-Down>", "<cmd><C-U>TmuxNavigateDown<cr>" },
-			{ "<M-Up>", "<cmd><C-U>TmuxNavigateUp<cr>" },
-			{ "<M-Right>", "<cmd><C-U>TmuxNavigateRight<cr>" },
-			{ "<c-\\>", "<cmd><C-U>TmuxNavigatePrevious<cr>" },
-		},
-	},
 	{'numToStr/Comment.nvim'},
+	{'christoomey/vim-tmux-navigator'},
+	{
+	  'stevearc/oil.nvim',
+	  opts = {},
+	  dependencies = { "nvim-tree/nvim-web-devicons" },
+	},
 })
