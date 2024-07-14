@@ -1,0 +1,15 @@
+[font]
+size = 14.0
+# normal = { family = "MesloLGL Nerd Font", style = "Regular" }
+normal = { family = "JetBrainsMono Nerd Font", style = "Regular" }
+
+[window]
+opacity = 0.9
+startup_mode = "Fullscreen"
+
+[window.padding]
+x = 10
+y = 10
+
+[colors]
+# transparent_background_colors = true
