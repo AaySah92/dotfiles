@@ -1,6 +1,7 @@
 vim.g.mapleader = " "
 
-vim.keymap.set('n', '<leader>b', vim.cmd.Ex)
+-- vim.keymap.set('n', '<leader>b', vim.cmd.Ex)
+vim.keymap.set('n', '<leader>b', vim.cmd.Neotree)
 vim.opt.clipboard:append { 'unnamed', 'unnamedplus' }
 vim.api.nvim_set_keymap('n', 'y', '"+y', { noremap = true })
 

@@ -37,11 +37,6 @@ require("lazy").setup({
 	{'numToStr/Comment.nvim'},
 	{'christoomey/vim-tmux-navigator'},
 	{
-		'stevearc/oil.nvim',
-		opts = {},
-		dependencies = { "nvim-tree/nvim-web-devicons" },
-	},
-	{
 		"nvim-neo-tree/neo-tree.nvim",
 		branch = "v3.x",
 		dependencies = {
